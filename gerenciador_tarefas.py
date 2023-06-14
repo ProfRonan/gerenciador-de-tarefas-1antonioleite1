@@ -24,13 +24,13 @@ def adicionar_tarefa(prioridade: bool, tarefa: str):
     # do tipo ValueError com a mensagem "Prioridade inválida"
     # Caso a tarefa já exista na lista, levante uma exceção do tipo ValueError
     # com a mensagem "Tarefa já existe"
-    if prioridade != True or prioridade != False:
+    if prioridade != True and prioridade != False:
         raise ValueError("Prioridade inválida")
     for item in lista_de_tarefas:
         if item["tarefa"] == tarefa:
             raise ValueError("Tarefa já existe")
     lista_de_tarefas.append({"prioridade": prioridade, "tarefa": tarefa})
-
+   
 
 def remove_tarefas(índices: tuple[int]):
     """
@@ -44,7 +44,13 @@ def remove_tarefas(índices: tuple[int]):
     # TODO: coloque o código aqui para remover um tarefa na lista
     # Caso a tarefa não exista na lista, levante uma exceção do tipo ValueError
     # com a mensagem "Tarefa não existe"
-    raise NotImplementedError("Remover tarefas não implementado")
+    if len(lista_de_tarefas) == 0:
+        raise ValueError("lista de tarefas vazia")
+    for item in índices:
+        if item < 0 or item >= len(lista_de_tarefas):
+            raise ValueError("Tarefa não existe")
+    for i in range(len(índices)-1, -1, -1):
+        lista_de_tarefas.pop(índices[i])
 
 
 def encontra_tarefa(tarefa: str) -> int:
