@@ -64,7 +64,10 @@ def encontra_tarefa(tarefa: str) -> int:
     # TODO: coloque o código aqui para encontrar um tarefa na lista
     # Caso a tarefa não exista na lista, levante uma exceção do tipo ValueError
     # com a mensagem "Tarefa não existe"
-    raise NotImplementedError("Encontrar tarefas não implementado")
+    for i, item in enumerate(lista_de_tarefas):
+        if item['tarefa'].lower() == tarefa.lower():
+            return i
+    raise ValueError('Tarefa não existe')
 
 
 def ordena_por_prioridade():
@@ -79,7 +82,7 @@ def ordena_por_prioridade():
     # não prioritárias.
     # As tarefas prioritárias devem ser ordenadas por ordem alfabética e as
     # tarefas não prioritárias devem ser ordenadas por ordem alfabética.
-    raise NotImplementedError("Ordenar tarefas não implementado")
+    lista_de_tarefas.sort(key=lambda x: (not x['prioridade'], x['tarefa']))
 
 
 def get_lista_de_tarefas():
